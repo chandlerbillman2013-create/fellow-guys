@@ -1,0 +1,10 @@
+{
+  "name": "fellow-guys",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@capacitor/cli": "latest",
+    "@capacitor/core": "latest",
+    "@capacitor/ios": "latest"
+  }
+}
