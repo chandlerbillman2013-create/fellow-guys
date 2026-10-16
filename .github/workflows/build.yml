@@ -2,6 +2,8 @@ name: Build iPhone app
 on:
   push:
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: macos-latest
@@ -30,3 +32,9 @@ jobs:
         with:
           name: FellowGuys-app
           path: FellowGuys.ipa
+      - name: Publish download link
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete latest --yes --cleanup-tag -R ${{ github.repository }} || true
+          gh release create latest FellowGuys.ipa --title "Fellow Guys app" --notes "Download FellowGuys.ipa and install it with Sideloadly." -R ${{ github.repository }}
